@@ -19,6 +19,8 @@ static void read_csv(const string& filename, vector<Mat>& images, vector<int>& l
 		if (!path.empty() && !classlabel.empty()) {
 			//XU LI ANH MAU BGR SANG GRAY
 			gray = imread(path,IMREAD_GRAYSCALE);
+			cout<<"size: "<<gray.size()<<endl;
+//			cvtColor(imread(path,3), gray, COLOR_BGR2GRAY);
 			//resize(gray, gray, Size(180, 200));
 			images.push_back(gray);
 			labels.push_back(atoi(classlabel.c_str()));

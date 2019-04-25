@@ -3,7 +3,7 @@
 int main(int argc, const char *argv[])
 {
 	//Checking arguments
-	cout << "usage: <path_training_set> <output_folder>" << endl;
+	cout << "usage: <path_training_set> <output_model_name.yml>" << endl;
 	cout << "\n----------------------------------------------------------\n"
 		 << endl;
 
@@ -49,6 +49,7 @@ int main(int argc, const char *argv[])
 		exit(-1);
 	}
 	//size 180x200;
+	cout<<"Image 0: "<<images[0].size()<<endl;
 	bool ok = true;
 	for (unsigned int i = 0; i < images.size(); i++)
 	{

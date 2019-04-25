@@ -15,8 +15,7 @@ int main(int argc, const char *argv[])
 	//initial variables
 	static string model_path =string(argv[1]);
 	static string data_path=string(argv[2]);
-	cout << "- model_path: " << model_path << endl;
-	cout << "- data_path: " << data_path << endl;
+
 	//Reading model
 	cout<<"Loading model..."<<endl;
 	Ptr<FaceRecognizer> model = LBPHFaceRecognizer::create();

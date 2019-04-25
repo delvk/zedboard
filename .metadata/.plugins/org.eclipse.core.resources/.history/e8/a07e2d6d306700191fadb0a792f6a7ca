@@ -3,7 +3,7 @@
 int main(int argc, const char *argv[])
 {
 	//Checking arguments
-	cout << "usage: <model_path> <data_path>" << endl;
+	cout << "usage: <path_training_set> <output_folder>" << endl;
 	cout << "\n----------------------------------------------------------\n"
 		 << endl;
 
@@ -13,10 +13,9 @@ int main(int argc, const char *argv[])
 		exit(-1);
 	}
 	//initial variables
-	static string model_path =string(argv[1]);
-	static string data_path=string(argv[2]);
-	cout << "- model_path: " << model_path << endl;
-	cout << "- data_path: " << data_path << endl;
+	static string model_path ="/mnt/output/model.yml";
+	static string data_path="/mnt/training/csv/test_set.csv";
+
 	//Reading model
 	cout<<"Loading model..."<<endl;
 	Ptr<FaceRecognizer> model = LBPHFaceRecognizer::create();

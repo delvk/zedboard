@@ -13,10 +13,10 @@ int main(int argc, const char *argv[])
 		exit(-1);
 	}
 	static string path_training_set_file = string(argv[1]);
-	static string output_folder = string(argv[2]);
+	static string output_foler = string(argv[2]);
 
 	cout << "- path_training_set: " << path_training_set_file << endl;
-	cout << "- output_folder: " << output_folder << endl;
+	cout << "- output_folder: " << output_foler << endl;
 
 	//For user check
 	cout << "Is this okay (Y/N) ?" << endl;
@@ -33,11 +33,11 @@ int main(int argc, const char *argv[])
 	// input filename is given.
 	try
 	{
-		read_csv(path_training_set_file, images, labels);
+		read_csv(path_training_set, images, labels);
 	}
 	catch (const cv::Exception &e)
 	{
-		cerr << "Error opening training file\n. Reason: " << e.msg << endl;
+		cerr << "Error opening file \"" << path_training_set << "\". Reason: " << e.msg << endl;
 		// nothing more we can do
 		exit(-1);
 	}
@@ -45,10 +45,10 @@ int main(int argc, const char *argv[])
 	if (images.size() <= 1)
 	{
 		string error_message = "This demo needs at least 2 images to work. Please add more images to your data set!";
-		cout<<error_message<<endl;
 		exit(-1);
 	}
 	//size 180x200;
+	cout<<"Image 0: "<<images[0].size()<<endl;
 	bool ok = true;
 	for (unsigned int i = 0; i < images.size(); i++)
 	{
@@ -61,7 +61,7 @@ int main(int argc, const char *argv[])
 	}
 	if (!ok)
 	{
-		cout << "Require size 180x200, try again with another set" << endl;
+		cout << "Kich thuoc yeu cau 180x200, xin thu lai voi tap du lieu khac" << endl;
 		return -1;
 	}
 	else{
@@ -74,7 +74,7 @@ int main(int argc, const char *argv[])
 	{
 		printf("Couldn't creating directory output, maybe already exit!\n");
 	}
-	else cout<<"Created "<<output_folder<<endl;
+	else cout<<"create "<<output_folder<<endl;
 
 //	/*---TRAINING---*/
 	cout<<"Start training ..."<<endl;
