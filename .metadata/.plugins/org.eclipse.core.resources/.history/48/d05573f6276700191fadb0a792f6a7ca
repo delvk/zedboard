@@ -1,0 +1,28 @@
+#include "../inc/face_regconition.hpp"
+#include "../inc/func_face_regcontion.hpp"
+int main(int argc, const char *argv[])
+{
+	//initial variables
+	string model_path ="/mnt/output/LBPH_face_model.yml";
+	string data_path="/mnt/training/csv/test_set.csv";
+	Ptr<FaceRecognizer> model = LBPHFaceRecognizer::create();
+	model->read(model_path);
+
+	//Loading test_data
+	vector<Mat> testSample;
+	vector<int> testLabel;
+	try
+	{
+
+		read_csv(data_path, testSample, testLabel);
+	}
+	catch (const cv::Exception &e)
+	{
+		cerr << "Error opening file \""
+			 << "\". Reason: " << e.msg << endl;
+		exit(-1);
+	}
+
+
+	return 0;
+}

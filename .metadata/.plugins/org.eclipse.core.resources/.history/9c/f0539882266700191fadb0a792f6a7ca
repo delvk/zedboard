@@ -1,0 +1,9 @@
+#include "../inc/face_regconition.hpp"
+#include "../inc/func_face_regcontion.hpp"
+int main(int argc, const char *argv[])
+{
+	//initial variables
+	string model_path ="/mnt/output/LBPH_face_model.yml";
+
+	return 0;
+}

@@ -1,0 +1,53 @@
+#include "../inc/face_regconition.hpp"
+#include "../inc/func_face_regcontion.hpp"
+int main(int argc, const char *argv[])
+{
+	//initial variables
+	string model_path ="/mnt/output/LBPH_face_model.yml";
+	string data_path="/mnt/training/csv/test_set.csv";
+	Ptr<FaceRecognizer> model = LBPHFaceRecognizer::create();
+	model->read(model_path);
+
+	//Loading test_data
+	vector<Mat> testSample;
+	vector<int> testLabel;
+	try
+	{
+
+		read_csv(data_path, testSample, testLabel);
+	}
+	catch (const cv::Exception &e)
+	{
+		cerr << "Error opening file \""
+			 << "\". Reason: " << e.msg << endl;
+		exit(-1);
+	}
+	// Vector predict
+	vector<int> predicted_label;
+	vector<double> predicted_confidence;
+	string check = "";
+
+	//Predict output
+	for (int i = 0; i < testLabel.size(); i++)
+	{
+		int label = -1;
+		double confident = 0.0;
+		model->predict(testSample[i], label, confident);
+		predicted_label.push_back(label);
+		predicted_confidence.push_back(confident);
+		if (predicted_label[i] != testLabel[i])
+			check = "*";
+		else
+			check = "";
+		cout << check << "predict: " << predicted_label[i] << " | " << testLabel[i] << " -- " << predicted_confidence[i] << endl;
+	}
+	cout << "Threshold: " << model->getThreshold() << endl;
+	//Clean up
+	testSample.clear();
+	testLabel.clear();
+	predicted_label.clear();
+	predicted_confidence.clear();
+	model->clear();
+
+	return 0;
+}
